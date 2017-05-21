@@ -1,0 +1,11 @@
+.Earth {
+    width: 63.71px;
+    height: 63.71px;
+    border-radius: 50%;
+    background-color: teal;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
