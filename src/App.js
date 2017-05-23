@@ -51,10 +51,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>Mapping the skies</h1>
+        <h3>Near Earth Objects and their proximity to Earth</h3>
         <Scatterplot 
           data={this.state.data}/>
       </div>
-    );
+    )
   }
 }
 

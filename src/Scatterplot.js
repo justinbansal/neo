@@ -27,37 +27,37 @@ class Scatterplot extends React.Component{
         let data = this.props.data;
         let value = this.state.value;
         console.log(data);
-        // let markSeriesJSX = data.map((obj,i) => {
-        //     return <MarkSeries 
-        //         data={obj[i]}
-        //         size={obj[i].estimated_diameter.kilometers.estimated_diameter_max*10}/>
-        // })
         return (
             <div>
-            <XYPlot width={1000}
-                    height={900}
-                    xDomain={[0,100000]}
+            <XYPlot width={1400}
+                    height={500}
+                    margin={{left: 50, right: 150, top: 50}}
+                    // xDomain={[0,100000]}
                     yDomain={[new Date(1900, 1, 1),new Date().getTime()]}
                     yType="time"
                     >
-                <HorizontalGridLines />
-                <VerticalGridLines />
                 <XAxis 
-                    // bottom={0}
-                    orientation="bottom"
+                    
                     title="Distance in 1,000 kilometers"
                     />
                 <YAxis 
                     title="Date"
-                    orientation="left"
                 />
+                <HorizontalGridLines />
+                <VerticalGridLines />
                 <MarkSeries 
                     data={data}
                     onValueMouseOver={this.rememberValue}
                     onValueMouseOut={this.forgetValue}
                     />
                 {
-                    value ? <Hint value={value}><div><p>{value.name}</p></div> </Hint> : null
+                    value ? <Hint value={value}>
+                                <div>
+                                    <h3>{value.name}</h3>
+                                    <p>Potentially hazardous:{value.is_potentially_hazardous_asteroid}</p>
+                                    <a href={value.nasa_jpl_url}><p>Link for more info</p></a>
+                                </div>
+                            </Hint> : null
                 }
             </XYPlot>
             </div>
