@@ -39,7 +39,7 @@ class App extends Component {
       })
       
       this.setState({
-        data: data.map((obj, i)=> ({...obj, x: (obj.close_approach_data[0].miss_distance.kilometers / 25484), y: +obj.close_approach_data[0].close_approach_date.split('-')[0]}))
+        data: data.map((obj, i)=> ({...obj, x: (obj.close_approach_data[0].miss_distance.kilometers / 1000), y: Date.parse(obj.close_approach_data[0].close_approach_date)}))
       });
     })
     .catch((error)=>{
@@ -51,7 +51,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Earth />
         <Scatterplot 
           data={this.state.data}/>
       </div>
