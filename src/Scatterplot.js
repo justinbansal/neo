@@ -26,19 +26,25 @@ class Scatterplot extends React.Component{
     render() {
         let data = this.props.data;
         let value = this.state.value;
-        console.log(data);
+        let xArray = data.map((obj) => {return obj.x});
+        console.log(xArray);
+        let yArray = data.map((obj) => {return obj.y});
+        let maxX = Math.max.apply(null, xArray);
+        let minY = Math.min.apply(null, yArray);
+        console.log(maxX);
+        console.log(minY);
+        // console.log(data);
         return (
             <div>
             <XYPlot width={1400}
                     height={500}
-                    margin={{left: 50, right: 150, top: 50}}
-                    // xDomain={[0,100000]}
-                    yDomain={[new Date(1900, 1, 1),new Date().getTime()]}
+                    margin={{left: 50, right: 200, top: 50}}
+                    xDomain={[0, maxX ]}
+                    yDomain={[minY, new Date().getTime()]}
                     yType="time"
                     >
                 <XAxis 
-                    
-                    title="Distance in 1,000 kilometers"
+                    title={"Distance from Earth in 1,000,000 km"}
                     />
                 <YAxis 
                     title="Date"
@@ -54,8 +60,8 @@ class Scatterplot extends React.Component{
                     value ? <Hint value={value}>
                                 <div>
                                     <h3>{value.name}</h3>
-                                    <p>Potentially hazardous:{value.is_potentially_hazardous_asteroid}</p>
-                                    <a href={value.nasa_jpl_url}><p>Link for more info</p></a>
+                                    <p>{value.size} kilometers in diameter</p>
+                                    <p>{value.x} million km from Earth</p>
                                 </div>
                             </Hint> : null
                 }

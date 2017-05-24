@@ -21,7 +21,7 @@ class App extends Component {
     }
 
     let data =[];
-    let promiseArray = buildUrls(10).map((url) => axios.get(url));
+    let promiseArray = buildUrls(20).map((url) => axios.get(url));
 
     axios.all(promiseArray)
     .then((promises) => {
@@ -39,7 +39,7 @@ class App extends Component {
       })
       
       this.setState({
-        data: data.map((obj, i)=> ({...obj, x: (obj.close_approach_data[0].miss_distance.kilometers / 1000), y: Date.parse(obj.close_approach_data[0].close_approach_date)}))
+        data: data.map((obj, i)=> ({...obj, x: (obj.close_approach_data[0].miss_distance.kilometers / 1000000), y: Date.parse(obj.close_approach_data[0].close_approach_date), size: obj.estimated_diameter.kilometers.estimated_diameter_max}))
       });
     })
     .catch((error)=>{
